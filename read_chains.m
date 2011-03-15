@@ -1,6 +1,10 @@
-function[big_chain,big_n]=read_chains(root,cutfrac)
+function[big_chain,big_n]=read_chains(root,cutfrac,tail)
 if ~exist('cutfrac')
     cutfrac=0.3;
+end
+
+if ~exist('tail')
+    tail='.txt';
 end
 
 cut_is_frac=false;
@@ -11,10 +15,12 @@ end
 
 
 big_chain=[];
-nfiles=how_many_files([root '_'],'.txt',1);
+%nfiles=how_many_files([root '_'],'.txt',1);
+nfiles=how_many_files([root '_'],tail,1);
 
 for j=1:nfiles,
-    chain_in=load([root '_' num2str(j) '.txt']);
+    %chain_in=load([root '_' num2str(j) '.txt']);
+    chain_in=load([root '_' num2str(j) tail]);
     n=size(chain_in,1);
     if (cut_is_frac)
         n_start=ceil(n*cutfrac);
@@ -24,4 +30,4 @@ for j=1:nfiles,
     big_n(j)=n-n_start+1;
     big_chain=[big_chain;chain_in(n_start:end,:)];
 end
-    
+   
