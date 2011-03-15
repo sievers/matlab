@@ -31,7 +31,9 @@ z_tab=[0 0
     500  27.908
     5000 2.877
     50000 0.289];
-value=interp1(1+z_tab(:,1),z_tab(:,2).*(1+z_tab(:,1)),1+z,'cubic');
+value=interp1(1+z_tab(:,1),z_tab(:,2).*(1+z_tab(:,1)),1+z,'*cubic');
+%value=interp1(1+z_tab(:,1),z_tab(:,2).*(1+z_tab(:,1)),1+z,'spline');
+
 value=value./(1+z);
 
 if (nargin>1)

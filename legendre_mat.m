@@ -1,4 +1,10 @@
 function[mat]=legendre_mat(x,ord)
+if numel(x)==1,
+  x=1:x;
+  x=x-mean(x);
+  x=x/max(abs(x));
+end
+
 if (max(x)>1)|(min(x)<-1)
     error('x out of range in cholmat');
 end

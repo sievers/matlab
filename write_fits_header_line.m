@@ -60,23 +60,36 @@ else
             fwrite(fid,' ','char');
         end
     else
+      %hacked by jls Feb 19 so quotes stay put
+      if (1)
+        crap = ['= ' value];
+        if numel(crap)<72,
+          crap(end+1:72)=' ';
+        end
+        if numel(crap)>72,
+          warning(['key too long: ' crap]);
+          crap=crap(1:72);
+        end
+        fwrite(fid,crap,'char');
+      else
         %value=sprintf('%s',value);
         value(int16(value)==0)=spacechar;
         if max(size(value))==7200,
-            fwrite(fid,value,'char');
+          fwrite(fid,value,'char');
         else
-            fwrite(fid,['=' spacechar],'char');
-            %fwrite(fid,value,'char');
-            if length(value)<70
-                for j=length(value)+1:70,
-                    value(j)=spacechar;
-                end
+          fwrite(fid,['=' spacechar],'char');
+          %fwrite(fid,value,'char');
+          if length(value)<70
+            for j=length(value)+1:70,
+              value(j)=spacechar;
             end
-            fwrite(fid,value(1:70),'char');
-            %for j=11+max(size(value)):80,
-            %    fwrite(fid,' ','char');
-            %end
+          end
+          fwrite(fid,value(1:70),'char');
+          %for j=11+max(size(value)):80,
+          %    fwrite(fid,' ','char');
+          %end
         end
+      end
     end
 end
 

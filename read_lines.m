@@ -11,7 +11,7 @@ end
 lines={};
 while (1)
     line_in=fgets(fid);
-    if (isstr(line_in))
+    if (ischar(line_in))
         lines=[lines;{line_in}];
     else
         fclose(fid);

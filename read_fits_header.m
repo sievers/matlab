@@ -49,15 +49,18 @@ for j=1:nrow,
   end
 
   eq=min(find(block(j,:)=='='));
-  assert(~isempty(eq));
-  str1=block(j,1:eq-1);
-  str2=block(j,eq+1:ind);
-  header{j,1}=strtrim(str1);
-  ind=find(str2=='''');
-  if (length(ind)>=2)
-    header{j,2}=strtrim(str2(ind(1)+1:ind(end)-1));
-  else
-    header{j,2}=my_str2num(str2);
+  
+  %assert(~isempty(eq));
+  if (~isempty(eq))
+    str1=block(j,1:eq-1);
+    str2=block(j,eq+1:ind);
+    header{j,1}=strtrim(str1);
+    ind=find(str2=='''');
+    if (length(ind)>=2)
+      header{j,2}=strtrim(str2(ind(1)+1:ind(end)-1));
+    else
+      header{j,2}=my_str2num(str2);
+    end
   end
 end
 

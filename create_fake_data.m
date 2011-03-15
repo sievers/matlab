@@ -44,7 +44,7 @@ else
         
         
     else
-        disp('doing cholesky');
+      %disp('doing cholesky');
         r=chol(mat);
         n=max(size(mat));
         ranmat=randn([n nsim]);
