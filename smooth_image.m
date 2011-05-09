@@ -1,7 +1,12 @@
-function[smoothed]=smooth_image(map,npix,dogauss)
-if (~exist('dogauss'))
-    dogauss='gaussian';
-end
+function[smoothed]=smooth_image(map,npix,varargin)
+%function[smoothed]=smooth_image(map,npix,dogauss)
+%if (~exist('dogauss'))
+%    dogauss='gaussian';
+%end
+
+dogauss=get_keyval_default('beam_type','gaussian',varargin{:});
+unnorm=get_keyval_default('unnorm',false,varargin{:});
+
 if (~exist('npix'))
     npix=3;
 end
@@ -15,7 +20,11 @@ if (strcmp(dogauss,'gaussian'))
     toconv=exp(-0.5*dr/(npix.^2));
 end
 
-toconv=toconv/sum(sum(toconv));
+if ~unnorm
+  toconv=toconv/sum(sum(toconv));
+end
+
+
 if (0)
     smoothed=conv2(map,toconv,'same');
 else

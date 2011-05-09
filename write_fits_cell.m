@@ -13,13 +13,12 @@ end
 
 
 
-naxis1=get_keyval_val('NAXIS1',keys,values); if isempty(naxis1) naxis1=0;end;
-naxis2=get_keyval_val('NAXIS2',keys,values);if isempty(naxis2) naxis1=0;end;
+naxis1=get_keyval_val('NAXIS1',keys,values); if isempty(naxis1) naxis1=0;end; if ischar(naxis1), naxis1=str2num(naxis1); end;
+naxis2=get_keyval_val('NAXIS2',keys,values);if isempty(naxis2) naxis1=0;end;  if ischar(naxis2), naxis2=str2num(naxis2); end;
 
 sz=[naxis1 naxis2];
 
 strict=get_keyval_default('strict',false,varargin{:});
-
 
 if sz~=size(map)
   if strict,
