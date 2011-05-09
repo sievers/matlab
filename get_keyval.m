@@ -4,8 +4,12 @@ assert(ischar(key));
 tf=strcmp(key,varargin);
 if sum(tf)>1,
     warning(['keyword ' key ' specified multiple times in get_keyval.']);
-    value=[];
-    return
+
+    %value=[];
+    %return
+    %change so that instead of exiting, it uses the first instance
+    ind=tf>0;
+    tf(ind(2:end))=0;
 end
 
 if sum(tf)==0,
