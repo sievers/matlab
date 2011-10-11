@@ -7,11 +7,10 @@ nuvec=0:nsamp;
 nuvec=[nuvec -1*fliplr(nuvec(2:end-1))]';
 dnu=1/(dt*nsamp);
 nuvec=nuvec*dnu;
-x=randn(size(nuvec));
+x=randn(size(nuvec))/sqrt(dt);
 xft=fft(x);
 ampvec=abs(nuvec).^powlaw;
 ampvec(1)=0;
-ampvec=ampvec/((knee/dt)^powlaw);
+ampvec=ampvec/((knee)^powlaw);
 vec=ifft(xft.*(ampvec));
 vec=real(vec(1:nsamp));
-
