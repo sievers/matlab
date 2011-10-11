@@ -11,7 +11,7 @@ nhead_block=ceil(nlines*80/2880);
 zero_pad(fid,2880*nhead_block-80*nlines);
 %fwrite(fid,data,'float32');
 fwrite(fid,data,'double');
-nbit=size(data,1)*size(data,2)*4;
+nbit=size(data,1)*size(data,2)*8;
 to_pad= ceil((ceil(nbit/2880)-nbit/2880)*2880-0.5);
 zero_pad(fid,to_pad);
 fclose(fid);
