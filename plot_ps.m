@@ -35,7 +35,10 @@ end
 if get_keyval_default('loglog',true,varargin{:}),
     %h=loglog(nu,dataft,col);
     try
-      h=loglog(args{:});
+      %h=loglog(args{:});  %for some reason this segfaults
+      h=plot(args{:});
+      set(gca,'yscale','log','xscale','log');
+
     catch
       h=plot(args{:});
       set(gca,'yscale','log','xscale','log');
