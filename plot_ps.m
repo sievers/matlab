@@ -9,7 +9,7 @@ if (detrend)
 end
 if (window)
     window_width=get_keyval_default('window_width',0.01,varargin{:})
-    data=window_data(data,window_width);
+    data=window_data_matlab(data,window_width);
 end
 
 
