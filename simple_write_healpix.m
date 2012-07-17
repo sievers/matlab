@@ -82,10 +82,10 @@ else
   fwrite(fid,map,'float');
   nwrote=4*numel(map);
 end
-frac=nwrote/2880;frac=frac-floor(frac);
+frac=nwrote/2880;frac=frac-floor(frac)
 if frac>0,
   nextra=round(2880-2880*frac)
-  %fprintf(fid,'%s',repmat(' ',[1 nextra]));
+  fprintf(fid,'%s',repmat(' ',[1 nextra]));
 end
 fclose(fid);
 
