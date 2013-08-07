@@ -53,7 +53,10 @@ end
 
 if get_keyval_default('loglog',true,varargin{:}),
     %h=loglog(nu,dataft,col);
-    h=loglog(args{:});
+    
+    %h=loglog(args{:});
+    h=plot(args{:});
+    set(gca,'xscale','log','yscale','log');
 else
     h=plot(args{:});
     %h=plot(nu,dataft,col);

@@ -4,6 +4,12 @@ for j=1:numel(delim),
     fwee=[fwee find(str==delim(j))];
 end
 fwee=sort(fwee);
+if isempty(fwee)
+  warning(['did not find delimiters in ' str]);
+  tags='';
+  return
+end
+
 tags={};
 if fwee(1)>1
     tags(1)={str(1:fwee(1)-1)};

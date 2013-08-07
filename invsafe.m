@@ -10,7 +10,7 @@ if (tol>0)
 else
   cut=abs(tol)*max(abs(e));
 end
-
+disp(cut)
 
 %disp(e')
 disp(['cut ' num2str(sum(abs(e)<abs(tol))) ' modes out of ' num2str(length(e)) ]);
