@@ -30,7 +30,11 @@ elseif (length(Vec(1,:))==3),
    I0  = find(SLL==0);
    In0 = find(SLL~=0);
    Res(In0,2)     = atan(L3(In0)./SLL(In0));  % Delta
-   Res(I0,2)      = sign(L3(I0)).*pi./2;  % Delta
+   %Res(I0,2)      = sign(L3(I0)).*pi./2;  % Delta
+   if ~isempty(I0)
+     Res(I0,2)      = sign(L3(I0))*pi/2;  % Delta
+   end
+
 else
    error('only 2/3 columns are allowed');
 end
