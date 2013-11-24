@@ -1,8 +1,8 @@
 function[nlines]=write_fits_header_line_test(fid,name,value,strtype)
 
-if length(name)>7
+if length(name)>8
   disp(['name ' name ' too long - truncating.']);
-  name=name(1:7);
+  name=name(1:8);
 end
 if strcmp(lower(name),'comment')
   %disp('doing comment stuff.');
@@ -26,7 +26,7 @@ else
   %else
   %  myline=sprintf('%-7s = %g',name,value);
   %end
-  myline=sprintf('%-7s = %s',name,_safe_g(value));
+  myline=sprintf('%-8s= %s',name,_safe_g(value));
   if length(myline)<80
     myline(end+1:80)=' ';
   end
