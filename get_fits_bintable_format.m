@@ -20,6 +20,9 @@ if mychar(end)=='A'
   return
 end
 if numel(mychar)>1
+  if numel(mychar)>2
+    disp(['going to puke on ' mychar]);
+  end
   assert(numel(mychar)==2);
   assert(mychar(1)=='1');
   mychar=mychar(end);
@@ -49,5 +52,11 @@ if mychar=='J'
   val=4;
   return
 end
+if mychar=='B'
+  val=1;
+  return
+end
 
+
+disp(['unrecognized type in convert_format_char_to_int: ' mychar]);
 

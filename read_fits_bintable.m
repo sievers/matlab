@@ -1,4 +1,18 @@
 function[value]=read_fits_bintable(header,fid)
+%if we just get a string in, assume we want the first bintable
+if ~exist('fid')
+  if ischar(header)
+    fname=header;
+    fid=fopen(fname);
+    h=read_fits_header(fid);
+    h2=read_fits_header(fid);
+    value=read_fits_bintable(h2,fid);
+    fclose(fid);
+    return
+  end
+end
+
+    
 
 [aaa,bbb,nbytes_row]=get_fits_bintable_format(header);
 
