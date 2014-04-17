@@ -5,6 +5,7 @@ smooth_width=get_keyval_default('smooth',0,varargin{:});
 dt=get_keyval_default('dt',1,varargin{:});
 skip_first=get_keyval_default('skip_first',false,varargin{:});
 depoly=get_keyval_default('depoly',0,varargin{:});
+noplot=get_keyval_default('noplot',false,varargin{:});
 
 if (depoly>0)
     xvec=1:length(data);
@@ -44,6 +45,14 @@ nu=nu(1:size(dataft,1));
 if ~skip_first
     nu(1)=0.5*nu(2);
 end
+
+if noplot
+  h=dataft;
+  dataft=nu;
+  return
+end
+
+
 col=get_keyval_default('color','',varargin{:});
 args={nu,dataft};
 if ~isempty(col)

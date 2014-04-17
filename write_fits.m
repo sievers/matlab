@@ -1,4 +1,10 @@
 function[value]=write_fits(data,file_name,names,values)
+%
+%write_fits(data,file_name,names,values)
+%
+
+
+
 nlines=0;
 fid=fopen(file_name,'w','ieee-be');
 for j=1:size(names,1),
