@@ -52,8 +52,21 @@ end
 function[mystr]=_safe_g(val)
 if ischar(val)
   mystr=val;
+  if isempty(mystr)
+    mystr=' ';
+  end
+  mystr=['''' mystr ''''];
   return
 end
+if islogical(val)
+  if val
+    mystr='T';
+  else
+    mystr='F';
+  end
+  return
+end
+
 mystr=sprintf('%g',val);
 if val~=0,
   vv=str2num(mystr);
