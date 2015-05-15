@@ -4,19 +4,19 @@ if ~exist('ringnest')
 end
 
 if (strcmp(ringnest,'ring'))
-  tag='''RING''';
+  tag='RING';
 else
-  tag='''NESTED''';
+  tag='NESTED';
 end
 
 
 keysvals={
-'SIMPLE'  'T'   
+'SIMPLE'  true  
 'BITPIX'  16
 'NAXIS'    0
-'EXTEND'  'T'
+'EXTEND'  true
 'RESOLUTN'  9
-'PIXTYPE'  '''HEALPIX'''
+'PIXTYPE'  'HEALPIX'
 'ORDERING'  tag
 'NSIDE'      512
 'FIRSTPIX'    0
@@ -24,7 +24,7 @@ keysvals={
 };
 
 xtvals={
-'XTENSION' '''BINTABLE'''           
+'XTENSION' 'BINTABLE'      
 'BITPIX'                      8 
 'NAXIS'                       2 
 'NAXIS1'                      4
@@ -32,12 +32,12 @@ xtvals={
 'PCOUNT'                      0 
 'GCOUNT'                      1 
 'TFIELDS'                     1 
-'TTYPE1'   '''TEMPERATURE '''       
-'TFORM1'   '''E       '''           
-'TUNIT1'   '''K      '''           
-'EXTNAME'  '''Archive Map Table'''  
-'PIXTYPE'  '''HEALPIX '''           
-'COORDSYS'                 ' ''unknown '''
+'TTYPE1'   'TEMPERATURE '       
+'TFORM1'   'E       '           
+'TUNIT1'   'K      '           
+'EXTNAME'  'Archive Map Table'  
+'PIXTYPE'  'HEALPIX '           
+'COORDSYS'                 'unknown'
 'ORDERING' tag
 'NSIDE'                     512 
 'FIRSTPIX'                    0 
@@ -49,9 +49,9 @@ if exist('weights')
     do_weight=true;
     assert(min(size(weights)==size(map))==1);
     crud={
-        'TTYPE2'  '''N_OBS   '''           
-        'TFORM2'  '''E       '''           
-        'TUNIT2'  '''counts  '''           
+        'TTYPE2'  'N_OBS   '           
+        'TFORM2'  'E       '           
+        'TUNIT2'  'counts  '           
          };
     xtvals=[xtvals;crud];
     xtvals=set_keysvals(xtvals,'NAXIS1',8,'TFIELDS',2);

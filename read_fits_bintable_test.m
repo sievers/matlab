@@ -1,13 +1,29 @@
-function[value]=read_fits_bintable_test(header,fid)
+function[value]=read_fits_bintable_test(header,fid,nrep)
 %if we just get a string in, assume we want the first bintable
 if ~exist('fid')
+  fid=[];
+end
+if ~exist('nrep')
+  nrep=1;
+end
+
+if isempty(fid)
   if ischar(header)
     fname=header;
     fid=fopen(fname);
     h=read_fits_header(fid);
+    
     h2=read_fits_header(fid);
+
     value=read_fits_bintable_test(h2,fid);
-    fclose(fid);
+    if nrep>1
+      value={value};
+      for j=2:nrep,
+        h2=read_fits_header(fid);
+        value(j)=read_fits_bintable_test(h2,fid);
+      end
+      fclose(fid);
+    end
     return
   end
 end
