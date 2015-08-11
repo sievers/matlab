@@ -6,7 +6,7 @@ dt=get_keyval_default('dt',1,varargin{:});
 skip_first=get_keyval_default('skip_first',false,varargin{:});
 depoly=get_keyval_default('depoly',0,varargin{:});
 noplot=get_keyval_default('noplot',false,varargin{:});
-
+max_freq=get_keyval_default('max_freq',0,varargin{:});
 if (depoly>0)
     xvec=1:length(data);
     xvec=xvec'-mean(xvec);
@@ -42,6 +42,12 @@ if (smooth_width>0)
 end
 dataft=dataft(1:floor( (n+1)/2),:);
 nu=nu(1:size(dataft,1));
+if max_freq>0
+  ii=nu<max_freq;
+  nu=nu(ii);
+  dataft=dataft(ii,:);
+end
+
 if ~skip_first
     nu(1)=0.5*nu(2);
 end
